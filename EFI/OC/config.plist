@@ -270,6 +270,10 @@
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
 			<dict>
+				<key>class-code</key>
+				<data>
+				AAMEAA==
+				</data>
 				<key>layout-id</key>
 				<integer>3</integer>
 			</dict>
@@ -330,7 +334,7 @@
 				<key>BundlePath</key>
 				<string>WhateverXe.kext</string>
 				<key>Comment</key>
-				<string>WhateverXe dc16b17 + RCS v3 forcewake+os_log snapshot diag (UUID 0055B4B6)</string>
+				<string>WhateverXe xps-unified a80a3d7 (iGPU acceleration + HDMI/DP audio)</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -609,6 +613,24 @@
 				<string></string>
 				<key>MinKernel</key>
 				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>SimpleHDA.kext</string>
+				<key>Comment</key>
+				<string>SimpleHDA 1.0.1 (laobamac): AppleHDA for Tahoe, needed for iGPU HDMI/DP audio. Not included: download it, then enable.</string>
+				<key>Enabled</key>
+				<false/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/SimpleHDA</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
@@ -1620,7 +1642,7 @@
 				AAAAAAAAAAAAAAAAAAA=
 				</data>
 				<key>boot-args</key>
-				<string>-v keepsyms=1 -lilubetaall -ctrsmt -no_compat_check hbfx-ahbm=3 agdpmod=pikera -btlfxnvramcheck -btlfxboardid -btlfxallowanyaddr -amfipassbeta -wegswitchgpu -allow3d -disablegfxfirmware -wex-no-edp-hpd -wex-edp-keep -wex-edp-blank -wex-resume-park -wex-tc1-legacy -wex-tc4-legacy -wex-audio-wake -wex-panel-handoff</string>
+				<string>-v keepsyms=1 -lilubetaall -ctrsmt -no_compat_check hbfx-ahbm=3 agdpmod=pikera -btlfxnvramcheck -btlfxboardid -btlfxallowanyaddr -amfipassbeta -wegswitchgpu -allow3d -disablegfxfirmware -wex-no-edp-hpd -wex-edp-keep -wex-edp-blank -wex-resume-park -wex-tc1-legacy -wex-tc4-legacy -wex-audio-wake -wex-panel-handoff -wex-audio-pinbuf -wex-dp-audio -wex-hdmi-audio</string>
 				<key>csr-active-config</key>
 				<data>
 				AwgAAA==

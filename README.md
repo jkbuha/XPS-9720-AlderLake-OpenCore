@@ -21,7 +21,7 @@
 | Display | 17" 1920 x 1200 FHD+ eDP | ✅ Working |
 | External display | HDMI through both USB-C ports (iGPU) | ✅ Working |
 | Audio (internal) | SoundWire: RT711 headset codec, 2× RT1316 amps, RT714 mics | ❌ Not Working |
-| Audio (iGPU HDMI) | Intel display codec | ❌ Not Working ([#124](https://github.com/b00t0x/WhateverXe/issues/124)) |
+| Audio (iGPU HDMI/DP) | Intel display codec | ✅ Working (needs SimpleHDA, see [HDMI/DP audio](#hdmidp-audio-igpu)) |
 | Audio (eGPU HDMI/DP) | AMD | ✅ Working |
 | WiFi | Intel AX211 (CNVi, `8086:51F0`) | ✅ Working (AirportItlwm) |
 | Bluetooth | Intel AX211 | ✅ Working |
@@ -65,10 +65,26 @@ Boot-args specific to this machine (all in `config-igpu.plist`):
 | `-wex-no-edp-hpd` | Masks the spurious panel hot-plug pulse that hard-hung display wake |
 | `-wex-resume-park` | Clean display hand-over on hibernation resume |
 | `-wex-tc1-legacy -wex-tc4-legacy` | The USB-C ports' HDMI is wired as legacy DP/HDMI, not Type-C alt mode |
-| `-wex-audio-wake` | Optional: wakes the iGPU HDMI audio codec (diagnostic, harmless) |
+| `-wex-audio-wake -wex-audio-pinbuf -wex-dp-audio -wex-hdmi-audio` | iGPU HDMI/DP audio (see [HDMI/DP audio](#hdmidp-audio-igpu)) |
 
 The eDP fixes come from nickk19 (`-wex-edp-keep`, `-wex-edp-blank`) and this machine's bring-up (`-wex-no-edp-hpd`);
 the ADL-H hand-off/CDCLK/IRQ fixes are renedis' port of Thatisjigen's work.
+
+# HDMI/DP audio (iGPU)
+
+Audio through an external display on the USB-C ports works with the iGPU config
+([b00t0x/WhateverXe#124](https://github.com/b00t0x/WhateverXe/issues/124)). macOS Tahoe has no AppleHDA, so it needs
+**SimpleHDA**, which this repo doesn't include because it bundles Apple's AppleHDA:
+
+1. Download [SimpleHDA 1.0.1](https://github.com/laobamac/SimpleHDA/releases) and copy `SimpleHDA.kext` to `EFI/OC/Kexts/`.
+2. In `config-igpu.plist` (and `config.plist` if you boot from it), set `Kernel > Add > SimpleHDA.kext > Enabled` to `true`.
+3. Reboot. The display appears as **DisplayPort** in Sound settings.
+
+`AppleALC` and the HDEF `class-code` (`00030400`) are already in the configs. The boot-args above enable the audio
+path in WhateverXe.
+
+Known limitation: after unplugging and replugging the display, the picture comes back but audio returns only after a
+reboot.
 
 # Fans (SMCDellDDV)
 
@@ -130,8 +146,7 @@ If you see APFS errors, damaged app bundles or random panics on the iGPU config,
 # Known Issues
 
 - Internal speakers/headphones/microphones are SoundWire (like the XPS 13 Plus); no macOS driver yet.
-- iGPU HDMI audio doesn't work yet: the codec enumerates but doesn't answer ([b00t0x/WhateverXe#124](https://github.com/b00t0x/WhateverXe/issues/124)).
-  Use the eGPU or a USB audio device.
+- iGPU HDMI/DP audio needs a reboot after the display is unplugged and replugged.
 - Fingerprint reader not supported.
 
 # Credits
