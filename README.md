@@ -147,6 +147,8 @@ If you see APFS errors, damaged app bundles or random panics on the iGPU config,
 
 - Internal speakers/headphones/microphones are SoundWire (like the XPS 13 Plus); no macOS driver yet.
 - iGPU HDMI/DP audio needs a reboot after the display is unplugged and replugged.
+- A GPU hang on the iGPU config causes a stall of about 10 seconds, after which the desktop continues (WhateverXe
+  `xps-unified` 1ff94f4 recovers the GPU instead of freezing). The app whose GPU work hung loses that work.
 - Fingerprint reader not supported.
 
 # Credits
