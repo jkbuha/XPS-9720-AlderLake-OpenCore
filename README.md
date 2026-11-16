@@ -41,7 +41,8 @@ The XPS 17 9720 runs macOS Tahoe in two ways from the same EFI:
 
 - **iGPU** (`config-igpu.plist`): native **Iris Xe acceleration** with b00t0x's [WhateverXe](https://github.com/b00t0x/WhateverXe)
   plus the XPS fixes on the `xps-unified` branch of [jkbuha/WhateverXe](https://github.com/jkbuha/WhateverXe/tree/xps-unified).
-  The internal panel, HDMI on both USB-C ports, display sleep and hibernation all work.
+  The internal panel, HDMI on both USB-C ports, display sleep and hibernation all work. The same kext runs the XPS 13 9320
+  (Raptor Lake) and XPS 13 9310 (Tiger Lake).
 - **eGPU** (`config-egpu.plist`): the daily-driver setup with an AMD Radeon on Thunderbolt (WhateverGreen, no WhateverXe).
 
 `config.plist` is the one OpenCore boots; copy whichever you want over it (see [Tools](#tools)).
