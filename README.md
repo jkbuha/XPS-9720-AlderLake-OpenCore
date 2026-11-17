@@ -54,7 +54,9 @@ only the boot-args differ.
 Graphics needs both halves of WhateverXe:
 
 1. `EFI/OC/Kexts/WhateverXe.kext` (in this repo): the Lilu plugin, built from `xps-unified`.
-2. **WhateverXe Graphics** (Apple's Tiger Lake driver bundles in `/Library/Extensions`); see the [WhateverXe README](https://github.com/b00t0x/WhateverXe).
+2. **WhateverXe Graphics** 0.4.4 (Apple's Tiger Lake driver bundles in `/Library/Extensions`); see the [WhateverXe README](https://github.com/b00t0x/WhateverXe).
+
+The kext is `xps-unified` on the WhateverXe 0.8.3 base. As in the 0.8.3 setup, AMFI stays on: [AMFIAnchor](https://github.com/b00t0x/AMFIAnchor) 0.1.2 and `AMFIAnchorInjector.kext` (the Graphics signing CA) load right after Lilu, in place of AMFIPass 1.4.1 Mod, whose entry is left disabled.
 
 Boot-args specific to this machine (all in `config-igpu.plist`):
 
@@ -158,7 +160,7 @@ If you see APFS errors, damaged app bundles or random panics on the iGPU config,
 acidanthera (OpenCore, Lilu, VirtualSMC, AppleALC, WhateverGreen, HibernationFixup, RestrictEvents, BrightnessKeys),
 [b00t0x](https://github.com/b00t0x/WhateverXe) (WhateverXe), nickk19, renedis and Thatisjigen (ADL eDP/hand-off fixes),
 zxystd (itlwm / IntelBluetoothFirmware), VoodooI2C team, 0xFireWolf (RealtekCardReader), sicreative (VoltageShift),
-dhinakg (AMFIPass), USBToolBox.
+dhinakg (AMFIPass), b00t0x (AMFIAnchor), USBToolBox.
 
 # Donate
 
