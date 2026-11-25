@@ -23,8 +23,8 @@
 | Audio (internal) | SoundWire: RT711 headset codec, 2× RT1316 amps, RT714 mics | ❌ Not Working |
 | Audio (iGPU HDMI/DP) | Intel display codec | ✅ Working (needs SimpleHDA, see [HDMI/DP audio](#hdmidp-audio-igpu)) |
 | Audio (eGPU HDMI/DP) | AMD | ✅ Working |
-| WiFi | Intel AX211 (CNVi, `8086:51F0`) | ✅ Working (AirportItlwm) |
-| Bluetooth | Intel AX211 | ✅ Working |
+| WiFi | Intel AX211 (CNVi, `8086:51F0`) | ✅ Working ([ForbiddenItlwm](https://github.com/retropineaple/ForbiddenItlwm) 0.7.0-alpha.3, AirDrop both ways) |
+| Bluetooth | Intel AX211 | ✅ Working (BTLEAdvFixup: Continuity, Universal Clipboard) |
 | SSD | Lexar NM790 4TB | ✅ Working |
 | Keyboard | - | ✅ Working |
 | Trackpad | I2C Connection | ✅ Working |
@@ -69,6 +69,10 @@ Boot-args specific to this machine (all in `config-igpu.plist`):
 | `-wex-resume-park` | Clean display hand-over on hibernation resume |
 | `-wex-tc1-legacy -wex-tc4-legacy` | The USB-C ports' HDMI is wired as legacy DP/HDMI, not Type-C alt mode |
 | `-wex-audio-wake -wex-audio-pinbuf -wex-dp-audio -wex-hdmi-audio` | iGPU HDMI/DP audio (see [HDMI/DP audio](#hdmidp-audio-igpu)) |
+| `-wex-d13-dc9-pwroff` | WhateverXe: Display13 deep-idle power-well teardown with full eDP wake restore |
+| `-wex-s0-csb-resync` | WhateverXe: S0 deep-idle wake handling of the context-status buffer (b00t0x/WhateverXe#171) |
+| `-btleadv -btleadvnodupfilter` | BTLEAdvFixup: Continuity advertising, incl. iPhone → Mac Universal Clipboard |
+| `-itlawdl*`, `itlawdl*=` | ForbiddenItlwm AWDL (AirDrop) options |
 
 The eDP fixes come from nickk19 (`-wex-edp-keep`, `-wex-edp-blank`) and this machine's bring-up (`-wex-no-edp-hpd`);
 the ADL-H hand-off/CDCLK/IRQ fixes are renedis' port of Thatisjigen's work.

@@ -38,6 +38,14 @@
 				<key>Path</key>
 				<string>SSDT-TRP3_EGPU.aml</string>
 			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>XPS9720 TPD0: GpioInt _CRS on Darwin (needs TPD0 _CRS/_INI renames, patched VoodooGPIO)</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-TPD0-GPIO.aml</string>
+			</dict>
 		</array>
 		<key>Delete</key>
 		<array>
@@ -136,6 +144,84 @@
 				<integer>0</integer>
 				<key>TableSignature</key>
 				<data>
+				</data>
+			</dict>
+			<dict>
+				<key>Base</key>
+				<string></string>
+				<key>BaseSkip</key>
+				<integer>0</integer>
+				<key>Comment</key>
+				<string>XPS9720 TPD0 _CRS to XCRS (SSDT-TPD0-GPIO)</string>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				X0NSUwCgDpVPU1lTC9wHpFNCRkmgHpNUUERNAA==
+				</data>
+				<key>Limit</key>
+				<integer>0</integer>
+				<key>Mask</key>
+				<data>
+				</data>
+				<key>OemTableId</key>
+				<data>
+				</data>
+				<key>Replace</key>
+				<data>
+				WENSUwCgDpVPU1lTC9wHpFNCRkmgHpNUUERNAA==
+				</data>
+				<key>ReplaceMask</key>
+				<data>
+				</data>
+				<key>Skip</key>
+				<integer>0</integer>
+				<key>TableLength</key>
+				<integer>0</integer>
+				<key>TableSignature</key>
+				<data>
+				RFNEVA==
+				</data>
+			</dict>
+			<dict>
+				<key>Base</key>
+				<string></string>
+				<key>BaseSkip</key>
+				<integer>0</integer>
+				<key>Comment</key>
+				<string>XPS9720 TPD0 _INI to XINI (SSDT-TPD0-GPIO)</string>
+				<key>Count</key>
+				<integer>1</integer>
+				<key>Enabled</key>
+				<true/>
+				<key>Find</key>
+				<data>
+				X0lOSQCgCFsSVFBIRAA=
+				</data>
+				<key>Limit</key>
+				<integer>0</integer>
+				<key>Mask</key>
+				<data>
+				</data>
+				<key>OemTableId</key>
+				<data>
+				</data>
+				<key>Replace</key>
+				<data>
+				WElOSQCgCFsSVFBIRAA=
+				</data>
+				<key>ReplaceMask</key>
+				<data>
+				</data>
+				<key>Skip</key>
+				<integer>0</integer>
+				<key>TableLength</key>
+				<integer>0</integer>
+				<key>TableSignature</key>
+				<data>
+				RFNEVA==
 				</data>
 			</dict>
 		</array>
@@ -262,12 +348,7 @@
 				<string>pci14e4,43a0</string>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x15,0x1)</key>
-			<dict>
-				<key>force-polling</key>
-				<data>
-				AQAAAA==
-				</data>
-			</dict>
+			<dict/>
 			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
 			<dict>
 				<key>class-code</key>
@@ -334,7 +415,7 @@
 				<key>BundlePath</key>
 				<string>AMFIAnchor.kext</string>
 				<key>Comment</key>
-				<string>V0.1.2 (replaces AMFIPass 1.4.1 Mod, WhateverXe 0.8.3 setup)</string>
+				<string>AMFIAnchor (0.8.3 setup)</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -352,7 +433,7 @@
 				<key>BundlePath</key>
 				<string>AMFIAnchorInjector.kext</string>
 				<key>Comment</key>
-				<string>WhateverXe Graphics signing CA anchor</string>
+				<string>AMFIAnchor (0.8.3 setup)</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -370,7 +451,7 @@
 				<key>BundlePath</key>
 				<string>WhateverXe.kext</string>
 				<key>Comment</key>
-				<string>WhateverXe xps-unified bff302c (0.8.3 base, iGPU acceleration, GPU-hang recovery, HDMI/DP audio)</string>
+				<string>V0.8.4 | xps-unified + 0.8.4 merge + nodsc-train 42703e6 + no double hwRegsNeedUpdate route 14c968b = B09E2413. Rollback: WhateverXe-edley-B8448EE8.kext</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -658,7 +739,7 @@
 				<key>BundlePath</key>
 				<string>SimpleHDA.kext</string>
 				<key>Comment</key>
-				<string>SimpleHDA 1.0.1 (laobamac): AppleHDA for Tahoe, needed for iGPU HDMI/DP audio. Not included: download it, then enable.</string>
+				<string>SimpleHDA 1.0.1 (AppleHDA 600.2 for Tahoe)</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -714,7 +795,7 @@
 				<key>Comment</key>
 				<string>V2.5.1</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/IntelBTPatcher</string>
 				<key>MaxKernel</key>
@@ -928,7 +1009,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext</string>
 				<key>Comment</key>
-				<string>V1.1.4</string>
+				<string>V1.1.7</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -946,7 +1027,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext</string>
 				<key>Comment</key>
-				<string>V1.1</string>
+				<string>V1.2 patched (TigerLakeLP start fix, from 9320 f609e4fb)</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -982,7 +1063,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext</string>
 				<key>Comment</key>
-				<string>V2.8</string>
+				<string>V2.9.1</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1070,17 +1151,17 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>AirportItlwm_Ventura.kext</string>
+				<string>AirportItlwm_Tahoe.kext</string>
 				<key>Comment</key>
-				<string>V1.0.0</string>
+				<string>AirportItlwm native Tahoe (patch-free test)</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/AirportItlwm</string>
 				<key>MaxKernel</key>
-				<string></string>
+				<string>25.99.99</string>
 				<key>MinKernel</key>
-				<string></string>
+				<string>25.0.0</string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
@@ -1088,13 +1169,31 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>AirportItlwm_Tahoe.kext</string>
+				<string>BTLEAdvFixup.kext</string>
 				<key>Comment</key>
-				<string>AirportItlwm native Tahoe (patch-free test)</string>
+				<string>BLE advertising for AirDrop/Continuity (-btleadv)</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
-				<string>Contents/MacOS/AirportItlwm</string>
+				<string>Contents/MacOS/BTLEAdvFixup</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>ForbiddenItlwm.kext</string>
+				<key>Comment</key>
+				<string>AWDL/AirDrop - replaces AirportItlwm on Tahoe</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/ForbiddenItlwm</string>
 				<key>MaxKernel</key>
 				<string>25.99.99</string>
 				<key>MinKernel</key>
@@ -1488,6 +1587,28 @@
 				<key>Auxiliary</key>
 				<true/>
 				<key>Comment</key>
+				<string>GrubX64</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Flavour</key>
+				<string>Auto</string>
+				<key>FullNvramAccess</key>
+				<false/>
+				<key>Name</key>
+				<string>grubx64.efi</string>
+				<key>Path</key>
+				<string>grubx64.efi</string>
+				<key>RealPath</key>
+				<false/>
+				<key>TextMode</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string></string>
+				<key>Auxiliary</key>
+				<true/>
+				<key>Comment</key>
 				<string>KeyTester.efi</string>
 				<key>Enabled</key>
 				<false/>
@@ -1678,7 +1799,7 @@
 				AAAAAAAAAAAAAAAAAAA=
 				</data>
 				<key>boot-args</key>
-				<string>-v keepsyms=1 -lilubetaall -ctrsmt -no_compat_check hbfx-ahbm=3 agdpmod=pikera -btlfxnvramcheck -btlfxboardid -btlfxallowanyaddr -amfipassbeta -wegswitchgpu -allow3d -disablegfxfirmware -wex-no-edp-hpd -wex-edp-keep -wex-edp-blank -wex-resume-park -wex-tc1-legacy -wex-tc4-legacy -wex-audio-wake -wex-panel-handoff -wex-audio-pinbuf -wex-dp-audio -wex-hdmi-audio</string>
+				<string>-v keepsyms=1 -lilubetaall -ctrsmt -no_compat_check hbfx-ahbm=3 agdpmod=pikera -btlfxnvramcheck -btlfxboardid -btlfxallowanyaddr -amfipassbeta -wegswitchgpu -allow3d -disablegfxfirmware -wex-no-edp-hpd -wex-edp-keep -wex-edp-blank -wex-resume-park -wex-tc1-legacy -wex-tc4-legacy -wex-panel-handoff -btleadv -btleadvnodupfilter -itlawdlcoexprobe -itlawdliface -itlawdlnativeup -itlawdlcoexrx -itlawdlcoextx -itlawdlcoexmulti -itlawdlcoexdata -itlawdlmitx -itlawdlelicit -itlawdlcaps -itlawdlsvcmerge -itlawdlawsync itlawdlintcoal=4 -itlawdlcoexbatx -itlawdlcoexpeerpause -itlawdlcoexbatrace itlawdltxqueue=4096 itlawdltxpool=4096 -wex-hdmi-audio -wex-audio-wake -wex-audio-pinbuf -wex-dp-audio -wex-s0-csb-resync -wex-d13-dc9-pwroff</string>
 				<key>csr-active-config</key>
 				<data>
 				AwgAAA==
